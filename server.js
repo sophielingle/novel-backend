@@ -7,7 +7,6 @@ app.use(express.static("public"));
 const books = [
     {
         "id": 1,
-        "link": "/book1",
         "title": "The Housemaid is Watching",
         "bestSeller": "yes",
         "image": "watching.jpg",
@@ -25,7 +24,6 @@ const books = [
     },
     {
         "id": 2,
-        "link": "/book2",
         "title": "Witches Get Stuff Done",
         "bestSeller": "yes",
         "image": "witches.jpg",
@@ -43,7 +41,6 @@ const books = [
     },
     {
         "id": 3,
-        "link": "/book3",
         "title": "No Strangers Here",
         "bestSeller": "yes",
         "image": "strangers.jpg",
@@ -61,7 +58,6 @@ const books = [
     },
     {
         "id": 4,
-        "link": "/book4",
         "title": "This Is How You Lose the Time War",
         "bestSeller": "yes",
         "image": "time.jpg",
@@ -79,7 +75,6 @@ const books = [
     },
     {
         "id": 5,
-        "link": "/book5",
         "title": "Notes From Underground",
         "bestSeller": "yes",
         "image": "notes.jpg",
@@ -97,7 +92,6 @@ const books = [
     },
     {
         "id": 6,
-        "link": "/book6",
         "title": "What Moves the Dead",
         "bestSeller": "no",
         "image": "moves_dead.jpg",
@@ -115,7 +109,6 @@ const books = [
     },
     {
         "id": 7,
-        "link": "/book7",
         "title": "The Shining",
         "bestSeller": "no",
         "image": "shining.jpg",
@@ -133,7 +126,6 @@ const books = [
     },
     {
         "id": 8,
-        "link": "/book8",
         "title": "Mexican Gothic",
         "bestSeller": "no",
         "image": "gothic.jpg",
@@ -151,7 +143,6 @@ const books = [
     },
     {
         "id": 9,
-        "link": "/book9",
         "title": "The List",
         "bestSeller": "no",
         "image": "list.jpg",
@@ -169,7 +160,6 @@ const books = [
     },
     {
         "id": 10,
-        "link": "/book10",
         "title": "Then She Was Gone",
         "bestSeller": "no",
         "image": "gone.jpg",
@@ -187,7 +177,6 @@ const books = [
     },
     {
         "id": 11,
-        "link": "/book11",
         "title": "The Guest List",
         "bestSeller": "no",
         "image": "guest.jpg",
@@ -205,7 +194,6 @@ const books = [
     },
     {
         "id": 12,
-        "link": "/book12",
         "title": "The Da Vinci Code",
         "bestSeller": "no",
         "image": "davinci.jpeg",
@@ -223,7 +211,6 @@ const books = [
     },
     {
         "id": 13,
-        "link": "/book13",
         "title": "Lovely War",
         "bestSeller": "no",
         "image": "lovely.jpg",
@@ -241,7 +228,6 @@ const books = [
     },
     {
         "id": 14,
-        "link": "/book14",
         "title": "Red, White and Royal Blue",
         "bestSeller": "no",
         "image": "red.jpg",

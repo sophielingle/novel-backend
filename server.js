@@ -1,8 +1,21 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const Joi = require("joi");
 app.use(cors());
 app.use(express.static("public"));
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./public/images/");
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
+});
+
+const upload = multer({ storage: storage });
 
 const books = [
     {
@@ -252,6 +265,57 @@ app.get("/",() => {
 app.get("/api/books", (req,res) => {
     res.json(books);
 });
+
+app.post("/api/books", upload.single("img"), (req, res)=>{
+    console.log("In a post request");
+  
+    const result = validateBook(req.body);
+  
+    if(result.error){
+      res.status(400).send(result.error.details[0].message);
+      console.log("I have an error");
+      return;
+    }
+  
+    const book = {
+      id:req.body.id,
+      title:req.body.title,
+      bestSeller:req.body.bestSeller,
+      author:req.body.author,
+      publication_year:req.body.publication_year,
+      genre:req.body.genre,
+      description:req.body.description,
+      extended_description:req.body.extended_description,
+      price:req.body.price,
+      favorite_chapters:req.body.favorite_chapters
+    }
+  
+    if(req.file){
+      book.image = req.file.filename;
+    }
+  
+    books.push(book);
+  
+    console.log(book);
+    res.status(200).send(book);
+  });
+  
+  const validateBook = (book)=>{
+    const schema = Joi.object({
+        id:Joi.number().required(),
+        title:Joi.string().min(1).required(),
+        bestSeller:Joi.string().min(2).required(),
+        author:Joi.string().required(),
+        publication_year:Joi.string().required(),
+        genre:Joi.string().required(),
+        description:Joi.string().required(),
+        extended_description:Joi.string().required(),
+        price:Joi.string().required(),
+        favorite_chapters:Joi.string().required()
+    });
+  
+    return schema.validate(book);
+};
 
 app.listen(3001, () => {
     console.log("Listening...");

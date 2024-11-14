@@ -287,7 +287,7 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
       description:req.body.description,
       extended_description:req.body.extended_description,
       price:req.body.price,
-      favorite_chapters:req.body.favorite_chapters
+      favorite_chapters:req.body.favorite_chapters1
     }
   
     if(req.file){
@@ -311,7 +311,7 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
         description:Joi.string().required(),
         extended_description:Joi.string().required(),
         price:Joi.string().required(),
-        favorite_chapters:Joi.string().required()
+        favorite_chapters1:Joi.string().required()
     });
   
     return schema.validate(book);

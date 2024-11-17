@@ -288,7 +288,7 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
     const bookId = books.length + 1;
   
     const book = {
-      id:req.body.id,
+      id:bookId,
       title:req.body.title,
       bestSeller:req.body.bestSeller,
       author:req.body.author,

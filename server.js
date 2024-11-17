@@ -268,6 +268,14 @@ app.get("/api/books", (req,res) => {
 
 app.post("/api/books", upload.single("img"), (req, res)=>{
     console.log("In a post request");
+
+    if (req.body.favorite_chapters) {
+        try {
+          req.body.favorite_chapters = JSON.parse(req.body.favorite_chapters);
+        } catch (error) {
+          return res.status(400).send("Invalid format for favorite chapters");
+        }
+    }
   
     const result = validateBook(req.body);
   

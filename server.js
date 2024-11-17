@@ -284,6 +284,8 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
       console.log("I have an error");
       return;
     }
+
+    const bookId = books.length + 1;
   
     const book = {
       id:req.body.id,
@@ -311,7 +313,6 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
   
   const validateBook = (book)=>{
     const schema = Joi.object({
-        id:Joi.number().required(),
         title:Joi.string().min(1).required(),
         bestSeller:Joi.string().min(2).required(),
         author:Joi.string().required(),

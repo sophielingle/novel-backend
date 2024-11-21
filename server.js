@@ -309,6 +309,52 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
     console.log(book);
     res.status(200).send(book);
   });
+
+  app.put("/api/books/:_id", upload.single("img"), (req,res)=>{
+    const book = books.find((book)=>book._id === String(req.params._id));
+  
+    if(!book){
+      res.status(404).send("The book with the provided id was not found");
+      return;
+    }
+  
+    const result = validateBook(req.body);
+  
+    if(result.error){
+      res.status(400).send(result.error.details[0].message);
+      return;
+    }
+  
+    book._id = bookId;
+    book.title = req.body.title;
+    book.bestSeller = req.body.bestSeller;
+    book.author = req.body.author;
+    book.publication_year = req.body.publication_year;
+    book.genre = req.body.genre;
+    book.description = req.body.description;
+    book.extended_description = req.body.extended_description;
+    book.price = req.body.price;
+    book.favorite_chapters = req.body.favorite_chapters;
+  
+    if(req.file){
+        book.image = req.file.filename;
+    }
+  
+    res.status(200).send(book);
+  });
+  
+  app.delete("/api/books/:_id", (req,res)=>{
+    const book = books.find((book)=>book._id === String(req.params._id));
+  
+    if(!book){
+      res.status(404).send("The book with the provided id was not found");
+      return;
+    }
+  
+    const index = books.indexOf(book);
+    books.splice(index,1);
+    res.status(200).send(book);
+  });
   
   const validateBook = (book)=>{
     const schema = Joi.object({

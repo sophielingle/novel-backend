@@ -320,7 +320,7 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
 
     console.log(req.body);
   
-    const result = validateBook(req.body);
+    const result = validateEditingBook(req.body);
     console.log("Validation result:", result);
   
     if(result.error){
@@ -337,7 +337,6 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
     book.description = req.body.description;
     book.extended_description = req.body.extended_description;
     book.price = req.body.price;
-    book.favorite_chapters = req.body.favorite_chapters;
   
     if(req.file){
         book.image = req.file.filename;
@@ -373,7 +372,22 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
     });
   
     return schema.validate(book);
-};
+    };
+
+    const validateEditingBook = (book)=>{
+        const schema = Joi.object({
+            title:Joi.string().min(1).required(),
+            bestSeller:Joi.string().min(2).required(),
+            author:Joi.string().required(),
+            publication_year:Joi.string().required(),
+            genre:Joi.string().required(),
+            description:Joi.string().required(),
+            extended_description:Joi.string().required(),
+            price:Joi.string().required(),
+        });
+      
+        return schema.validate(book);
+    };
 
 app.listen(3001, () => {
     console.log("Listening...");

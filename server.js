@@ -276,7 +276,7 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
           return res.status(400).send("Invalid format for favorite chapters");
         }
     }
-  
+
     const result = validateBook(req.body);
   
     if(result.error){
@@ -317,6 +317,8 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
       res.status(404).send("The book with the provided id was not found");
       return;
     }
+
+    console.log('Request body:', req.body);
   
     const result = validateBook(req.body);
   

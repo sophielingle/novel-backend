@@ -323,6 +323,8 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
     const result = validateEditingBook(req.body);
     console.log("Validation result:", result);
   
+    req.body.favorite_chapters = JSON.parse(req.body.favorite_chapters);
+
     if(result.error){
       res.status(400).send(result.error.details[0].message);
       console.log("error in validation");
@@ -337,6 +339,7 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
     book.description = req.body.description;
     book.extended_description = req.body.extended_description;
     book.price = req.body.price;
+    book.favorite_chapters = req.body.favorite_chapters;
   
     if(req.file){
         book.image = req.file.filename;
@@ -384,6 +387,7 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
             description:Joi.string().required(),
             extended_description:Joi.string().required(),
             price:Joi.string().required(),
+            favorite_chapters:Joi.string().required()
         });
       
         return schema.validate(book);

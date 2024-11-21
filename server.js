@@ -318,12 +318,14 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
       return;
     }
 
-    console.log('Request body:', req.body);
+    console.log(req.body);
   
     const result = validateBook(req.body);
+    console.log("Validation result:", result);
   
     if(result.error){
       res.status(400).send(result.error.details[0].message);
+      console.log("error in validation");
       return;
     }
   

@@ -19,7 +19,7 @@ const upload = multer({ storage: storage });
 
 const books = [
     {
-        "id": 1,
+        "_id": 1,
         "title": "The Housemaid is Watching",
         "bestSeller": "yes",
         "image": "watching.jpg",
@@ -36,7 +36,7 @@ const books = [
         ]
     },
     {
-        "id": 2,
+        "_id": 2,
         "title": "Witches Get Stuff Done",
         "bestSeller": "yes",
         "image": "witches.jpg",
@@ -53,7 +53,7 @@ const books = [
         ]
     },
     {
-        "id": 3,
+        "_id": 3,
         "title": "No Strangers Here",
         "bestSeller": "yes",
         "image": "strangers.jpg",
@@ -70,7 +70,7 @@ const books = [
         ]
     },
     {
-        "id": 4,
+        "_id": 4,
         "title": "This Is How You Lose the Time War",
         "bestSeller": "yes",
         "image": "time.jpg",
@@ -87,7 +87,7 @@ const books = [
         ]
     },
     {
-        "id": 5,
+        "_id": 5,
         "title": "Notes From Underground",
         "bestSeller": "yes",
         "image": "notes.jpg",
@@ -104,7 +104,7 @@ const books = [
         ]
     },
     {
-        "id": 6,
+        "_id": 6,
         "title": "What Moves the Dead",
         "bestSeller": "no",
         "image": "moves_dead.jpg",
@@ -121,7 +121,7 @@ const books = [
         ]
     },
     {
-        "id": 7,
+        "_id": 7,
         "title": "The Shining",
         "bestSeller": "no",
         "image": "shining.jpg",
@@ -138,7 +138,7 @@ const books = [
         ]
     },
     {
-        "id": 8,
+        "_id": 8,
         "title": "Mexican Gothic",
         "bestSeller": "no",
         "image": "gothic.jpg",
@@ -155,7 +155,7 @@ const books = [
         ]
     },
     {
-        "id": 9,
+        "_id": 9,
         "title": "The List",
         "bestSeller": "no",
         "image": "list.jpg",
@@ -172,7 +172,7 @@ const books = [
         ]
     },
     {
-        "id": 10,
+        "_id": 10,
         "title": "Then She Was Gone",
         "bestSeller": "no",
         "image": "gone.jpg",
@@ -189,7 +189,7 @@ const books = [
         ]
     },
     {
-        "id": 11,
+        "_id": 11,
         "title": "The Guest List",
         "bestSeller": "no",
         "image": "guest.jpg",
@@ -206,7 +206,7 @@ const books = [
         ]
     },
     {
-        "id": 12,
+        "_id": 12,
         "title": "The Da Vinci Code",
         "bestSeller": "no",
         "image": "davinci.jpeg",
@@ -223,7 +223,7 @@ const books = [
         ]
     },
     {
-        "id": 13,
+        "_id": 13,
         "title": "Lovely War",
         "bestSeller": "no",
         "image": "lovely.jpg",
@@ -240,7 +240,7 @@ const books = [
         ]
     },
     {
-        "id": 14,
+        "_id": 14,
         "title": "Red, White and Royal Blue",
         "bestSeller": "no",
         "image": "red.jpg",
@@ -288,7 +288,7 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
     const bookId = books.length + 1;
   
     const book = {
-      id:bookId,
+      _id:bookId,
       title:req.body.title,
       bestSeller:req.body.bestSeller,
       author:req.body.author,
@@ -298,7 +298,6 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
       extended_description:req.body.extended_description,
       price:req.body.price,
       favorite_chapters: req.body.favorite_chapters
-      //favorite_chapters:req.body.favorite_chapters1, 
     }
   
     if(req.file){
@@ -322,10 +321,6 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
         extended_description:Joi.string().required(),
         price:Joi.string().required(),
         favorite_chapters: Joi.array().items(Joi.string()).length(3).required()
-        //favorite_chapters1:Joi.string().required(),
-        //favorite_chapters2:Joi.string().required(),
-        //favorite_chapters3:Joi.string().required()
-
     });
   
     return schema.validate(book);

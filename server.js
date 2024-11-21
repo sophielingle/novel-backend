@@ -311,7 +311,7 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
   });
 
   app.put("/api/books/:_id", upload.single("img"), (req,res)=>{
-    const book = books.find((book)=>book._id === String(req.params._id));
+    const book = books.find((book)=>book._id === parseInt(req.params._id));
   
     if(!book){
       res.status(404).send("The book with the provided id was not found");
@@ -343,7 +343,7 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
   });
   
   app.delete("/api/books/:_id", (req,res)=>{
-    const book = books.find((book)=>book._id === String(req.params._id));
+    const book = books.find((book)=>book._id === parseInt(req.params._id));
   
     if(!book){
       res.status(404).send("The book with the provided id was not found");

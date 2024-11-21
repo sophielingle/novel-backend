@@ -325,7 +325,6 @@ app.post("/api/books", upload.single("img"), (req, res)=>{
       return;
     }
   
-    book._id = bookId;
     book.title = req.body.title;
     book.bestSeller = req.body.bestSeller;
     book.author = req.body.author;

@@ -43,7 +43,7 @@ const bookSchema = new mongoose.Schema({
 const Book = mongoose.model("Book", bookSchema);
 
 app.get("/", (req, res) => {
-    res.sendFile(_dirname + "/index.html");
+    res.sendFile(__dirname + "/index.html");
 });
 
 app.get("/api/books", async(req,res) => {
@@ -88,7 +88,7 @@ app.post("/api/books", upload.single("img"), async(req, res) => {
       book.image = req.file.filename;
     }
   
-    const newBook = await book.saved();
+    const newBook = await book.save();
 
     res.status(200).send(newBook);
   });

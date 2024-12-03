@@ -34,7 +34,7 @@ const bookSchema = new mongoose.Schema({
     author: String,
     publication_year: String,
     genre: String,
-    decription: String,
+    description: String,
     extended_description: String,
     price: String,
     favorite_chapters: Array
